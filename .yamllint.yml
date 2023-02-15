@@ -21,13 +21,10 @@ rules:
   empty-values: disable
   float-values: disable
   hyphens: enable
-
-  ignore: |
-    molecule/
-    meta/
-    .github/
-
-  indentation: enable
+  indentation:
+    ignore: |
+      - .github/workflows/ci.yml
+      - molecule/default/verify.yml
   key-duplicates: enable
   key-ordering: disable
   line-length: enable
