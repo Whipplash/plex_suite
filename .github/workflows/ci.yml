@@ -13,7 +13,7 @@ jobs:
       - name: Code checkout
         uses: actions/checkout@v3
         with:
-          path: "${{ github.repository }}"
+          path: "${{ github.workspace }}"
 
       - name: Set up Python 3
         uses: actions/setup-python@v4
@@ -41,7 +41,7 @@ jobs:
       - name: Code checkout
         uses: actions/checkout@v3
         with:
-          path: "${{ github.repository }}"
+          path: "${{ github.workspace }}"
 
       - name: Set up Python 3
         uses: actions/setup-python@v2
