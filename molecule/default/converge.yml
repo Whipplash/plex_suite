@@ -1,0 +1,7 @@
+---
+- name: Converge
+  hosts: all
+  tasks:
+    - name: "Include mattslab.plex_suite"
+      include_role:
+        name: "mattslab.plex_suite"
