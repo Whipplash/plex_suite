@@ -49,7 +49,7 @@ jobs:
           python-version: '3.x'
 
       - name: Install Molecule and its Docker dep
-        run: pip install ansible molecule molecule-plugins
+        run: pip3 install ansible molecule[docker] docker
 
       - name: Molecule Testing...
         run: molecule test
