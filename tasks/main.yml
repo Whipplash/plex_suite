@@ -1,2 +1,6 @@
 ---
 # tasks file for plex_suite
+
+- name: Molecule Hello World!
+  ansible.builtin.debug:
+    msg: Hello, World!
