@@ -73,7 +73,7 @@ jobs:
           python-version: '3.x'
 
       - name: Install Ansible
-        run: pip3 install ${{ matrix.ansible-release } molecule[docker] docker
+        run: "pip3 install ${{ matrix.ansible-release } molecule[docker] docker"
 
       - name: Molecule Testing...
         run: molecule test
