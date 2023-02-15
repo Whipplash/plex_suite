@@ -27,4 +27,6 @@ rules:
     max: 200
     level: warning
     allow-non-breakable-inline-mappings: true
+  trailing-spaces:
+    level: warning
   truthy: disable

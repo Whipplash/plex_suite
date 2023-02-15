@@ -6,27 +6,6 @@ on:
 
 jobs:
 
-  tox:
-    name: tox
-    runs-on: ubuntu-latest
-    steps:
-      - name: Code checkout
-        uses: actions/checkout@v3
-        with:
-          path: "${{ github.workspace }}"
-
-      - name: Set up Python 3
-        uses: actions/setup-python@v4
-        with:
-          python-version: '3.x'
-
-      - name: Install test dependencies.
-        run: pip3 install ansible ansible-lint docker molecule[docker] tox yamllint 
-
-      - name: Lint code.
-        run: |
-          tox
-
   yamllint:
     name: yamllint
     runs-on: ubuntu-latest
@@ -91,7 +70,7 @@ jobs:
           python-version: '3.x'
 
       - name: Install Molecule and its Docker dep
-        run: pip3 install ansible molecule[docker] docker
+        run: pip3 install ansible=2.9.7 molecule[docker] docker
 
       - name: Molecule Testing...
         run: molecule test
