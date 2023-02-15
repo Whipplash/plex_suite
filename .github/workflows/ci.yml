@@ -57,6 +57,9 @@ jobs:
           - debian11
           - rockylinux8
           - ubuntu2204
+        ansible-release:
+          - ansible==2.9.7
+          - ansible
 
     steps:
       - name: Code checkout
@@ -70,7 +73,7 @@ jobs:
           python-version: '3.x'
 
       - name: Install Ansible
-        run: pip3 install ansible==2.9.7 molecule[docker] docker
+        run: pip3 install ${{ matrix.ansible-release } molecule[docker] docker
 
       - name: Molecule Testing...
         run: molecule test
