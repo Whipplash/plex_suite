@@ -6,8 +6,8 @@ on:
 
 jobs:
 
-  lint:
-    name: Lint
+  yamllint:
+    name: yamllint
     runs-on: ubuntu-latest
     steps:
       - name: Code checkout
@@ -26,6 +26,27 @@ jobs:
       - name: Lint code.
         run: |
           yamllint .
+
+  ansible-lint:
+    name: ansible-lint
+    runs-on: ubuntu-latest
+    steps:
+      - name: Code checkout
+        uses: actions/checkout@v3
+        with:
+          path: "${{ github.workspace }}"
+
+      - name: Set up Python 3
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.x'
+
+      - name: Install test dependencies.
+        run: pip3 install ansible-lint
+
+      - name: Lint code.
+        run: |
+          ansible-lint .
 
   molecule:
     name: Molecule
