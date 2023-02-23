@@ -15,6 +15,7 @@ exclude_paths:
   - test/fixtures/formatting-before/
   - test/fixtures/formatting-prettier/
   - molecule/
+  - meta/
 # parseable: true
 # quiet: true
 # strict: true
