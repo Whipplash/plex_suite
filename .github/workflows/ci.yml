@@ -2,7 +2,10 @@
 name: Continuous Integration
 
 on:
-  - push
+  push:
+    branches:
+      - '*'
+      - '!master'
 
 jobs:
 
@@ -54,11 +57,11 @@ jobs:
     strategy:
       matrix:
         distro:
-          - debian11
-          - rockylinux8
-          - ubuntu2204
+          - geerlingguy/docker-debian11-ansible:latest
+          - geerlingguy/docker-centos8-ansible:latest
+          - geerlingguy/docker-rockylinux8-ansible:latest
+          - geerlingguy/docker-ubuntu2204-ansible:latest
         ansible-release:
-          - ansible==2.9.7
           - ansible
 
     steps:
