@@ -2,6 +2,7 @@
 name: Continuous Integration
 
 on:
+  pull_request:
   push:
     branches:
       - '*'
@@ -66,7 +67,7 @@ jobs:
         ansible-release:
           - ansible
         include:
-          - test: converge
+          - m6e: converge
 
     steps:
       - name: Code checkout
@@ -83,7 +84,7 @@ jobs:
         run: pip3 install ${{ matrix.ansible-release }} molecule[docker] docker
 
       - name: Molecule Testing...
-        run: molecule ${{ matrix.test }}
+        run: molecule ${{ matrix.m6e }}
         env:
           PY_COLORS: '1'
           ANSIBLE_FORCE_COLOR: '1'
