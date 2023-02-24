@@ -1,6 +1,12 @@
 ---
 - name: Converge
   hosts: all
+  pre_tasks:
+    # Absolutely necessary for all Debian systems... APT will otherwise state the package DNE.
+    - name: Update apt cache.
+      apt: update_cache=true cache_valid_time=600
+      when: ansible_os_family == 'Debian'
+
   tasks:
     - name: "Include mattslab.plex_suite"
       include_role:

@@ -4,3 +4,8 @@
 - name: Molecule Hello World!
   ansible.builtin.debug:
     msg: Hello, World!
+
+- name: Install apache httpd  (state=present is optional)
+  ansible.builtin.apt:
+    name: vim
+    state: present

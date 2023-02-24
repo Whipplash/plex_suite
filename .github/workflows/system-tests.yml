@@ -1,11 +1,12 @@
 ---
-name: Continuous Integration
+name: Unit Testing
 
 on:
-  push:
+  pull_request:
     branches:
-      - '*'
-      - '!master'
+      - master
+    # The line below removes redundant checks between push/pull
+    types: [opened, reopened]
 
 jobs:
 
@@ -55,6 +56,7 @@ jobs:
     name: Molecule
     runs-on: ubuntu-latest
     strategy:
+      fail-fast: false
       matrix:
         distro:
           - geerlingguy/docker-debian11-ansible:latest
@@ -63,6 +65,8 @@ jobs:
           - geerlingguy/docker-ubuntu2204-ansible:latest
         ansible-release:
           - ansible
+        include:
+          - m6e: converge
 
     steps:
       - name: Code checkout
@@ -79,7 +83,7 @@ jobs:
         run: pip3 install ${{ matrix.ansible-release }} molecule[docker] docker
 
       - name: Molecule Testing...
-        run: molecule test
+        run: molecule ${{ matrix.m6e }}
         env:
           PY_COLORS: '1'
           ANSIBLE_FORCE_COLOR: '1'
