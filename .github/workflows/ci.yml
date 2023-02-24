@@ -51,23 +51,22 @@ jobs:
         run: |
           ansible-lint .
 
+
   molecule:
     name: Molecule
     runs-on: ubuntu-latest
     strategy:
       fail-fast: false
       matrix:
-        include:
-          - distro: geerlingguy/docker-debian11-ansible:latest
-            test: converge
-          - distro: geerlingguy/docker-centos8-ansible:latest
-            test: converge
-          - distro: geerlingguy/docker-rockylinux8-ansible:latest
-            test: converge
-          - distro: geerlingguy/docker-ubuntu2204-ansible:latest
-            test: converge
+        distro:
+          - geerlingguy/docker-debian11-ansible:latest
+          - geerlingguy/docker-centos8-ansible:latest
+          - geerlingguy/docker-rockylinux8-ansible:latest
+          - geerlingguy/docker-ubuntu2204-ansible:latest
         ansible-release:
           - ansible
+        include:
+          - test: converge
 
     steps:
       - name: Code checkout
