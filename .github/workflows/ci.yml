@@ -57,15 +57,17 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        distro:
-          - geerlingguy/docker-debian11-ansible:latest
-          - geerlingguy/docker-centos8-ansible:latest
-          - geerlingguy/docker-rockylinux8-ansible:latest
-          - geerlingguy/docker-ubuntu2204-ansible:latest
+        include:
+          - distro: geerlingguy/docker-debian11-ansible:latest
+            playbook: converge.yml
+          - distro: geerlingguy/docker-centos8-ansible:latest
+            playbook: converge.yml
+          - distro: geerlingguy/docker-rockylinux8-ansible:latest
+            playbook: converge.yml
+          - distro: geerlingguy/docker-ubuntu2204-ansible:latest
+            playbook: converge.yml
         ansible-release:
           - ansible
-        playbook: 
-          - converge.yml
 
     steps:
       - name: Code checkout
