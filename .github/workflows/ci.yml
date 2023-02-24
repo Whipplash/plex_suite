@@ -64,7 +64,8 @@ jobs:
           - geerlingguy/docker-ubuntu2204-ansible:latest
         ansible-release:
           - ansible
-      playbook: converge.yml
+        playbook: 
+          - converge.yml
 
     steps:
       - name: Code checkout
@@ -86,3 +87,4 @@ jobs:
           PY_COLORS: '1'
           ANSIBLE_FORCE_COLOR: '1'
           MOLECULE_DISTRO: ${{ matrix.distro }}
+          MOLECULE_PLAYBOOK: ${{ matrix.playbook }}
