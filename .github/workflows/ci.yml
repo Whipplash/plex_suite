@@ -59,13 +59,13 @@ jobs:
       matrix:
         include:
           - distro: geerlingguy/docker-debian11-ansible:latest
-            playbook: converge.yml
+            test: converge
           - distro: geerlingguy/docker-centos8-ansible:latest
-            playbook: converge.yml
+            test: converge
           - distro: geerlingguy/docker-rockylinux8-ansible:latest
-            playbook: converge.yml
+            test: converge
           - distro: geerlingguy/docker-ubuntu2204-ansible:latest
-            playbook: converge.yml
+            test: converge
         ansible-release:
           - ansible
 
@@ -84,7 +84,7 @@ jobs:
         run: pip3 install ${{ matrix.ansible-release }} molecule[docker] docker
 
       - name: Molecule Testing...
-        run: molecule test
+        run: molecule ${{ matrix.test }}
         env:
           PY_COLORS: '1'
           ANSIBLE_FORCE_COLOR: '1'
